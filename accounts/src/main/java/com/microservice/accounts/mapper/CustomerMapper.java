@@ -1,14 +1,16 @@
 package com.microservice.accounts.mapper;
 
+import com.microservice.accounts.dto.AccountsDTO;
 import com.microservice.accounts.dto.CustomerDTO;
 import com.microservice.accounts.entities.Customer;
 
 public class CustomerMapper {
 
-    public static CustomerDTO mapToCustomerDto(Customer customer, CustomerDTO customerDto) {
+    public static CustomerDTO mapToCustomerDto(Customer customer, CustomerDTO customerDto, AccountsDTO accountsDTO) {
         customerDto.setName(customer.getName());
         customerDto.setEmail(customer.getEmail());
         customerDto.setMobileNumber(customer.getMobileNumber());
+        customerDto.setAccountsInfo(accountsDTO);
         return customerDto;
     }
 

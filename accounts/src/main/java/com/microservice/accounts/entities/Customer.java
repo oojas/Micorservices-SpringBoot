@@ -12,8 +12,8 @@ import org.hibernate.annotations.GenericGenerator;
 @NoArgsConstructor
 public class Customer extends BaseEntity{
     @Id
-    @Column
-    @GeneratedValue(strategy = GenerationType.IDENTITY,generator = "native")// auto generate the customer ID
+    @Column(updatable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)// auto generate the customer ID
     private Long customerId;
     @Column
     private String name;

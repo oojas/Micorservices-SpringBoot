@@ -11,9 +11,9 @@ import lombok.*;
 @NoArgsConstructor
 public class Accounts extends BaseEntity{
     @Id
-    @Column
+    @Column(updatable = false)
     private Long accountNumber;
-    @Column
+    @Column(updatable = false)
     private Long customerId;
     @Column
     private String accountType;
