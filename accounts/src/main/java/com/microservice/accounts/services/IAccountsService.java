@@ -6,4 +6,5 @@ public interface IAccountsService {
     void createAccount(CustomerDTO customerDTO);
     CustomerDTO fetchAccountDetails(String mobileNumber) throws ResourceNotFoundException;
     boolean updateCustomer(CustomerDTO customerDTO);
+    void deleteAccount(String accountNumber);
 }

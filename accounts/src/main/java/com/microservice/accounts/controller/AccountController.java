@@ -39,4 +39,10 @@ public class AccountController {
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
                 .body(new ResponseDTO(AccountsConstants.STATUS_500,AccountsConstants.MESSAGE_500));
     }
+
+    @DeleteMapping("/delete")
+    public ResponseEntity<ResponseDTO> deleteCustomerDetails(@RequestParam String accountNumber){
+        iAccountsService.deleteAccount(accountNumber);
+        return ResponseEntity.status(HttpStatus.OK).body(new ResponseDTO(AccountsConstants.STATUS_201,AccountsConstants.DELETE_SUCCESS));
+    }
 }
