@@ -63,8 +63,6 @@ public class AccountServiceImpl implements IAccountsService {
         accounts.setAccountNumber(accountNumber);
         accounts.setAccountType(AccountsConstants.SAVINGS);
         accounts.setBranchAddress(AccountsConstants.ADDRESS);
-        accounts.setCreatedAt(LocalDateTime.now());
-        accounts.setCreatedBy("ojgupta");
         return accounts;
     }
     @Override
@@ -84,8 +82,6 @@ public class AccountServiceImpl implements IAccountsService {
                     ()->new ResourceNotFoundException("Customer","Customer ID",customerID.toString())
             );
             CustomerMapper.mapToCustomer(customerDTO,customer);
-            customer.setUpdatedAt(LocalDateTime.now());
-            customer.setUpdatedBy("OJGUPTAA");
             customerRepository.save(customer);
             isUpdated=true;
         }
