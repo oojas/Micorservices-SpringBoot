@@ -5,4 +5,5 @@ import org.springframework.stereotype.Service;
 
 public interface  CardServiceBO {
     void createCustomerCard(CardDTO cardDTO);
+    CardDTO getCardDetails(String cardNumber);
 }
