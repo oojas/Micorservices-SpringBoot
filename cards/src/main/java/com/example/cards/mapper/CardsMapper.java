@@ -6,8 +6,7 @@ import lombok.Data;
 
 @Data
 public class CardsMapper {
-    public static Cards mapToCards(CardDTO cardDTO,Long cardNumber){
-        Cards cards=new Cards();
+    public static Cards mapToCards(Cards cards,CardDTO cardDTO){
         cards.setCardNumber(cardDTO.getCardNumber());
         cards.setCardType(cardDTO.getCardType());
         cards.setAmountUsed(cardDTO.getAmountUsed());
