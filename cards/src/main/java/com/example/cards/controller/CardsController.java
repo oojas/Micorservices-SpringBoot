@@ -30,14 +30,13 @@ public class CardsController {
 
     @GetMapping(value = "/fetch",params = "cardNumber")
     public ResponseEntity<CardDTO> getCardDetails(@RequestParam
-        @Valid
         @Pattern(regexp = "(^$|[0-9]{10})",message = "Please enter a 10 digit valid card Number") String cardNumber){
         CardDTO response=cardServiceBO.getCardDetails(cardNumber);
         return new ResponseEntity<CardDTO>(response,HttpStatus.OK);
     }
     @GetMapping(value = "/fetch",params = "mobileNumber")
     public ResponseEntity<CardDTO> getCardDetailsFromMobileNumber(@RequestParam
-           @Valid @Pattern(regexp = "(^$|[0-9]{10})",message = "Please enter a valid 10 digit Mobile Number") String mobileNumber){
+           @Pattern(regexp = "(^$|[0-9]{10})",message = "Please enter a valid 10 digit Mobile Number") String mobileNumber){
         CardDTO response=cardServiceBO.getCardDetailsFromMobileNumber(mobileNumber);
         return new ResponseEntity<CardDTO>(response,HttpStatus.OK);
     }
@@ -54,7 +53,7 @@ public class CardsController {
 
     @DeleteMapping("/delete")
     public ResponseEntity<ResponseDTO> deleteCardDetails(@RequestParam
-      @Valid @Pattern(regexp = "(^$|[0-9]{10})",message = "Please enter a valid 10 digit Mobile Number")String mobileNumber){
+       @Pattern(regexp = "(^$|[0-9]{10})",message = "Please enter a valid 10 digit Mobile Number")String mobileNumber){
         cardServiceBO.deleteCardDetails(mobileNumber);
         return ResponseEntity.status(HttpStatus.OK)
                 .body(new ResponseDTO(CardsConstants.STATUS_200,CardsConstants.DELETE_SUCCESS));
