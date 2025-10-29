@@ -8,6 +8,8 @@ import com.microservice.accounts.services.IAccountsService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Pattern;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -19,6 +21,10 @@ import org.springframework.web.bind.annotation.*;
 public class AccountController {
   @Autowired
   private IAccountsService iAccountsService;
+  @Value("${build.version}")
+  private String buildVersion;
+  @Autowired
+  private Environment environment;
     @PostMapping("/createAccount")
     public ResponseEntity<ResponseDTO> createAccount(@Valid @RequestBody CustomerDTO customerDTO){
         iAccountsService.createAccount(customerDTO);
@@ -52,5 +58,14 @@ public class AccountController {
             @RequestParam String accountNumber){
         iAccountsService.deleteAccount(accountNumber);
         return ResponseEntity.status(HttpStatus.OK).body(new ResponseDTO(AccountsConstants.STATUS_201,AccountsConstants.DELETE_SUCCESS));
+    }
+
+    @GetMapping("/getBuildInfo")
+    public ResponseEntity<String> getBuildInfo(){
+        return ResponseEntity.status(HttpStatus.OK).body(buildVersion);
+    }
+    @GetMapping("/java-version")
+    public ResponseEntity<String> getJavaVersion(){
+        return ResponseEntity.status(HttpStatus.OK).body(environment.getProperty("JAVA_HOME"));
     }
 }

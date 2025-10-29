@@ -14,3 +14,6 @@ spring:
     hibernate:
       ddl-auto: update # If no tables created, please create the table based on sql scripts
     show-sql: true # print all sql queries
+
+build:
+  version: "My Name is Khan"
