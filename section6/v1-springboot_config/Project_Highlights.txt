@@ -1,0 +1,3 @@
+1. Creating rest api and deploying it on docker. Creating docker images and containers using build packs
+2. keeping configurations separate from microservice [docker image] so that same image can be used across different envs.
+3.
