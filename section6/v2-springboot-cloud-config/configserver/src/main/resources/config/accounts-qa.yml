@@ -9,8 +9,3 @@ accounts:
   onCallSupport:
     - (555) 555-6747
     - (555) 523-3645
-
-spring:
-  config:
-    activate:
-      on-profile: "qa"

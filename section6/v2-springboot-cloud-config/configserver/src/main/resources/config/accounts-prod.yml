@@ -9,8 +9,3 @@ accounts:
   onCallSupport:
     - (555) 555-2465
     - (555) 523-4863
-
-spring:
-  config:
-    activate:
-      on-profile: "prod"
