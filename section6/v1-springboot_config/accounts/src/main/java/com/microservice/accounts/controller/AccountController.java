@@ -1,6 +1,7 @@
 package com.microservice.accounts.controller;
 
 import com.microservice.accounts.constants.AccountsConstants;
+import com.microservice.accounts.dto.AccountsContactInfoDTO;
 import com.microservice.accounts.dto.AccountsDTO;
 import com.microservice.accounts.dto.CustomerDTO;
 import com.microservice.accounts.dto.ResponseDTO;
@@ -25,6 +26,8 @@ public class AccountController {
   private String buildVersion;
   @Autowired
   private Environment environment;
+  @Autowired
+  private AccountsContactInfoDTO accountsContactInfoDTO;
     @PostMapping("/createAccount")
     public ResponseEntity<ResponseDTO> createAccount(@Valid @RequestBody CustomerDTO customerDTO){
         iAccountsService.createAccount(customerDTO);
@@ -67,5 +70,9 @@ public class AccountController {
     @GetMapping("/java-version")
     public ResponseEntity<String> getJavaVersion(){
         return ResponseEntity.status(HttpStatus.OK).body(environment.getProperty("JAVA_HOME"));
+    }
+    @GetMapping("/contact-info")
+    public ResponseEntity<AccountsContactInfoDTO> getContactInfo(){
+        return new ResponseEntity<AccountsContactInfoDTO>(accountsContactInfoDTO,HttpStatus.OK);
     }
 }

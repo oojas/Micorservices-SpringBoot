@@ -1,0 +1,16 @@
+build:
+  version: "2.0"
+
+cards:
+  message: "Welcome to QA "
+  contactDetails:
+    name: "Ritika - QA"
+    email: "ritika@eazybank.com"
+  onCallSupport:
+    - (555) 555-1234
+    - (555) 523-1345
+
+spring:
+  config:
+    activate:
+      on-profile: "qa"

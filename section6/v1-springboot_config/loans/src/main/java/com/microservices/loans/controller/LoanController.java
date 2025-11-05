@@ -1,21 +1,26 @@
 package com.microservices.loans.controller;
 
 import com.microservices.loans.DTO.LoanDTO;
+import com.microservices.loans.DTO.LoansConfigurationDTO;
 import com.microservices.loans.DTO.ResponseDTO;
 import com.microservices.loans.services.LoanServiceBO;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api")
-@AllArgsConstructor
 @Validated
 public class LoanController {
+    @Autowired
     LoanServiceBO loanServiceBO;
+    @Autowired
+    private LoansConfigurationDTO loansConifugrationDTO;
     @PostMapping("/createLoan")
     public ResponseEntity<ResponseDTO> createLoanAccount(@Valid @RequestBody LoanDTO loanDTO){
         return loanServiceBO.createLoan(loanDTO);
@@ -44,5 +49,10 @@ public class LoanController {
     @DeleteMapping("/delete")
     ResponseEntity<ResponseDTO> deleteLoanDetails(@Valid @RequestParam String mobileNumber){
         return loanServiceBO.deleteLoanDetails(mobileNumber);
+    }
+
+    @GetMapping("/contact-info")
+    public ResponseEntity<LoansConfigurationDTO> getContactInfo(){
+        return new ResponseEntity<>(loansConifugrationDTO, HttpStatus.OK);
     }
 }

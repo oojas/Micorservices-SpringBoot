@@ -2,12 +2,14 @@ package com.example.cards.controller;
 
 import com.example.cards.constants.CardsConstants;
 import com.example.cards.dto.CardDTO;
+import com.example.cards.dto.CardsConfigurationDTO;
 import com.example.cards.dto.ResponseDTO;
 import com.example.cards.services.CardServiceBO;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import org.hibernate.engine.spi.Resolution;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
@@ -16,10 +18,12 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("api/cards/")
-@AllArgsConstructor
 @Validated
 public class CardsController {
+    @Autowired
     private CardServiceBO cardServiceBO;
+    @Autowired
+    private CardsConfigurationDTO cardsConfigurationDTO;
     @PostMapping("/createCard")
     public ResponseEntity<ResponseDTO> createCard(
            @RequestBody @Valid CardDTO cardDTO){
@@ -57,5 +61,10 @@ public class CardsController {
         cardServiceBO.deleteCardDetails(mobileNumber);
         return ResponseEntity.status(HttpStatus.OK)
                 .body(new ResponseDTO(CardsConstants.STATUS_200,CardsConstants.DELETE_SUCCESS));
+    }
+
+    @GetMapping("/contact-info")
+    public ResponseEntity<CardsConfigurationDTO> getContactInfo(){
+        return new ResponseEntity<>(cardsConfigurationDTO,HttpStatus.OK);
     }
 }
