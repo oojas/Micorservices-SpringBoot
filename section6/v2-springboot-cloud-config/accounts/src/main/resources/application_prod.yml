@@ -1,0 +1,16 @@
+build:
+  version: "1.0"
+
+accounts:
+  message: "Welcome to PROD"
+  contactDetails:
+    name: "Rohan - Case Worker"
+    email: "rohan@eazybank.com"
+  onCallSupport:
+    - (555) 555-2465
+    - (555) 523-4863
+
+spring:
+  config:
+    activate:
+      on-profile: "prod"

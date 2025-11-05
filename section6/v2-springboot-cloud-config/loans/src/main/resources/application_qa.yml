@@ -1,0 +1,16 @@
+build:
+  version: "1.0"
+
+loans:
+  message: "Welcome to QA "
+  contactDetails:
+    name: "Romail - QA"
+    email: "romail@eazybank.com"
+  onCallSupport:
+    - (555) 555-4534
+    - (555) 523-1231
+
+spring:
+  config:
+    activate:
+      on-profile: "qa"
