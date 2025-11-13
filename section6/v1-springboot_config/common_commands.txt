@@ -27,4 +27,4 @@ docker pull docker.io/ojas22/loans:s4 : PULLING A IMAGE FROM THE DOCKER HUB REPO
 
 GENERATING JAR OF SPRING-BOOT APPLICATION : 
 mvn clean package
-	
+
