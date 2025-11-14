@@ -2,12 +2,46 @@ spring:
   application:
     name: "configserver"
   profiles:
-    active: native
+    #active: native : Native is only used if the config files are stored in either the file system or in the configserver itself
+    active: git #Git is used if the files in stored in a github repo.
   cloud:
     config:
       server:
-        native:
-          search-locations: "classpath:/config"
+        git:
+          uri: "https://github.com/oojas/Micorservices-SpringBoot-Config.git"
+          #username: "oojas"
+          #password: "KSJDNVKSJV" THIS IS HOW YOU CAN MAKE YOUR GIT REPO PRIVATE AND ACCESS IT.
+          default-label: main # Tells the configserver which branch to get the config files if there are multiple branches
+          timeout: 5 # Springboot should be able to fetch the details within 5 seconds
+          clone-on-start: true # On start of the application clone the repo
+          force-pull: true # If you anytime make local changes and have not committed them in your config repo then take a pull and only deploy those changes
+          # that are already present on git.
+
+
+        #native: Native is only used if the config files are stored in either the file system or in the configserver itself
+          #search-locations: "classpath:/config"
+          # If you keep your yml config files in a file system basically in your local system then you need to give the path of your local system in search location.
+  rabbitmq:
+    host: "localhost"
+    port: 5672
+    username: "guest"
+    password: "guest"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+  health: # With this we are basically telling the actuator to introduce health related endpoints and let us know the state of the application whether its ready to accept requests or not.
+    readiness-state:
+      enabled: true
+    liveness-state:
+      enabled: true
+  endpoint: #This is the endpoint which is listening to health
+    health:
+      probes:
+        enabled: true
 
 
 server:

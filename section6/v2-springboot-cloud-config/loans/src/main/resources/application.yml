@@ -5,8 +5,16 @@ spring:
     name: "loans"
   profiles:
     active: "default"
-  config:
-    import: "configserver:http://localhost:8071/"
+    # we are only commenting out the below line because its not letting the docker to run, while testing bring this back
+    #config:
+    # import: "configserver:http://localhost:8071/"
+    # We are using RabbitMQ here because what if we have 100 of microservices, then with refresh api of actuator we will have to invoke 100's of apis.
+    # That is why we are using bus service of rabbitMQ, where we will hit the bus api only once and all the microservices configurations will get refreshed.
+  rabbitmq:
+    host: "localhost"
+    port: 5672
+    username: "guest"
+    password: "guest"
   datasource:
     url: jdbc:h2:mem:testdb
     driverClassName: org.h2.Driver
@@ -20,3 +28,9 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"   # We are telling springboot to expose all endpoint management related endpoints of actuator
