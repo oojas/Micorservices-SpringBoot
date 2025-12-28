@@ -192,3 +192,6 @@ By completing this learning roadmap, you’ll be able to:
 
 ## CONFIG REPO LINK : 
 https://github.com/oojas/Micorservices-SpringBoot-Config
+
+Section 6 has configuration related code and then the microservices are also built.
+Sectiion 7 deals with MYSQL
