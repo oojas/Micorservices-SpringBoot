@@ -26,9 +26,10 @@
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.36/lombok-1.18.36.jar" />
         </processorPath>
         <module name="accounts" />
+        <module name="accounts (2)" />
         <module name="loans (1)" />
-        <module name="accounts (1)" />
         <module name="loans" />
+        <module name="accounts (1)" />
       </profile>
     </annotationProcessing>
   </component>
@@ -36,6 +37,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="accounts" options="-parameters" />
       <module name="accounts (1)" options="-parameters" />
+      <module name="accounts (2)" options="-parameters" />
       <module name="cards" options="-parameters" />
       <module name="cards (1)" options="-parameters" />
       <module name="loans" options="-parameters" />
